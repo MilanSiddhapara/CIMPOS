@@ -24,6 +24,7 @@ public class CIMPOSParser {
 		List<CIMResponseBody> responseBodies=new ArrayList<CIMResponseBody>();
 		for (int i = 0; i < results.size(); i=i+5)
 		{
+			System.out.println("::::::::::::::::::::hiiiiiii:::::::::::::::::::");
 			CIMResponseBody cimResponseBody =new CIMResponseBody();
 			
 			Map attributes = results.get(i).getAttributes();
@@ -54,11 +55,13 @@ public class CIMPOSParser {
 			j++;
 			List<Object> values4 = results.get(j).getValues();
 			j++;
+		ArrayList<CIMBody> cimBodies=new ArrayList<CIMBody>();
 		
 			for(int k=0;k<values.size();k++)
 			{
 				CIMBody cimBody=new CIMBody();
 				
+				 System.out.println("------------------helloooo-----");
 				ArrayList<Integer> arr= (ArrayList<Integer>) values.get(k);
 				cimBody.setAvgValue(arr.get(1));
 				ArrayList<Integer> arr1= (ArrayList<Integer>) values1.get(k);
@@ -99,12 +102,15 @@ public class CIMPOSParser {
 					
 				}
 				
-				cimResponseBody.setCimBody(cimBody);
-				responseBodies.add(cimResponseBody);
+				cimBodies.add(cimBody);
+				//cimResponseBody.setCimBody(cimBody);
+				System.out.println("cimBodies :::::: "+cimBodies);
+				
+				
 			}
 			
-
-				
+			cimResponseBody.setCimBodies(cimBodies);
+			responseBodies.add(cimResponseBody);
 		}
 		
 		return responseBodies;
